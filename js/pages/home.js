@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Text, Surface, Appbar } from 'react-native-paper';
 import QRCode from 'react-native-qrcode-svg'
+import dayjs from 'dayjs';
 
 const colorMap = {
   green: '#85e085',
@@ -11,6 +12,16 @@ const colorMap = {
 
 const Home = () => {
   const [codeColor, setCodeColor] = useState(colorMap['yellow']);
+  const [curTime, setCurTime] = useState(dayjs().format('YYYY-MM-DD HH:mm:ss'));
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurTime(dayjs().format('YYYY-MM-DD HH:mm:ss'))
+    }, 1000);
+    return () => {
+      clearInterval(timer);
+    }
+  }, [])
+  
   return (
     <View style={style.container}>
       <Appbar.Header>
@@ -22,6 +33,9 @@ const Home = () => {
         </View>
         <View style={style.code}>
           <QRCode color={codeColor} size={150} style={style.code} value='https://www.google.com' />
+        </View>
+        <View>
+          <Text>{curTime}</Text>
         </View>
       </Surface>
     </View>
