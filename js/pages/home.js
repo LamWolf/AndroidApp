@@ -9,7 +9,7 @@ const Home = () => {
   return (
     <Stack.Navigator initialRouteName='Code'>
       <Stack.Screen options={{ headerShown: false }} name="Code" component={Code} />
-      <Stack.Screen name="Vaccination" component={Vaccination}/>
+      <Stack.Screen options={{ title: 'Vaccination Record' }} name="Vaccination" component={Vaccination}/>
     </Stack.Navigator>
   )
 }

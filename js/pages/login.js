@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { TextInput, Button } from 'react-native-paper';
+import { TextInput, Button, HelperText } from 'react-native-paper';
 
 const Login = ({ navigation }) => {
   const navigateTo = () => {
@@ -28,6 +28,9 @@ const Login = ({ navigation }) => {
         onChangeText={setAccount}
         onBlur={onBlurAccount}
       />
+      <HelperText type="error" visible={accountError}>
+        Account can not be empty!
+      </HelperText>
       <TextInput
         secureTextEntry
         style={style.password}
@@ -39,6 +42,9 @@ const Login = ({ navigation }) => {
         onChangeText={setPassword}
         onBlur={onBlurPassword}
       />
+      <HelperText type="error" visible={passwordError}>
+        Password can not be empty!
+      </HelperText>
       <Button style={style.button} mode="contained" onPress={() => navigateTo()}>Sign In</Button>
     </View>
   )
